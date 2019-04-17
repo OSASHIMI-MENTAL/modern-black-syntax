@@ -13,8 +13,10 @@ atom-text-editor {
 
   .line.cursor-line {
     font-style: bold;
-    border: 1px solid @syntax-indent-guide-color;
+    border-bottom: 1px solid lighten(@syntax-background-color,20%);
+    position: relative; z-index: 0;
   }
+
 
   .wrap-guide {
     background-color: @syntax-wrap-guide-color;
@@ -44,6 +46,31 @@ atom-text-editor {
       &.cursor-line-no-selection {
         color: lighten(@light-blue,40%);
       }
+
+      .icon-right::before{
+        font-size: 0.9em;
+        width: 0.8em;
+        height: 0.8em;
+        content:"\f06c"
+      }
+
+      &.bookmarked{
+        background-color: #bf7200;
+        color: #FFF;
+
+        .icon-right::before {
+          color: #FFF;
+          opacity: 1;
+        }
+      }
+
+
+
+      &.folded .icon-right:before{
+        font-size: 0.9em;
+        content:"\f06b"
+      }
+
     }
 
     .linter-gutter-error {
@@ -55,6 +82,24 @@ atom-text-editor {
       color: rgba(0,0,0,0);
     }
 
+    .line-number.foldable.folded{
+      color: lighten(@light-blue,50%);
+    }
+
+
+
+    .icon-right {
+      color: #FFF;
+    }
+
+
+  }
+  .gutter:hover .line-number.folded .icon-right::before{
+
+    width: 0.8em;
+    height: 0.8em;
+    font-size: 0.9em;
+    content:"\f06b";
 
   }
 
@@ -78,7 +123,7 @@ atom-text-editor {
 
   .bracket-matcher .region{
     position: static;
-    background: @navy;
+    background-color: @navy;
     border-bottom: 0px none @navy;
   }
 }
